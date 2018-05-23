@@ -1,0 +1,11 @@
+.nav-ul {
+  list-style-type: none;
+}
+
+.nav-li {
+  display: inline;
+}
+
+.nav-a {
+  color: white;
+}
