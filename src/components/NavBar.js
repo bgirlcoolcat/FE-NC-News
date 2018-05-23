@@ -1,14 +1,15 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg">
       <ul className="nav-ul">
-        <li className="nav-li"><a className="nav-a" href="">Home | </a></li>
-        <li className="nav-li"><a className="nav-a" href="">Football | </a></li>
-        <li className="nav-li"><a className="nav-a" href="">Cooking | </a></li>
-        <li className="nav-li"><a className="nav-a" href="">Coding</a></li>
+        <NavLink to="/" className="nav-a"><li className="nav-li">Home | </li></NavLink>
+        <NavLink to="/" className="nav-a"><li className="nav-li">Football | </li></NavLink>
+        <NavLink to="/" className="nav-a"><li className="nav-li">Cooking | </li></NavLink>
+        <NavLink to="/" className="nav-a"><li className="nav-li">Coding</li></NavLink>
       </ul>
     </nav>
   );
