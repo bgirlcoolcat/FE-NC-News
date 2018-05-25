@@ -1,50 +1,34 @@
 import React, { Component } from 'react';
+import Loading from './Loading';
 import { Link } from 'react-router-dom';
 import './ArticlePage.css';
 
-const articles = [
-  {
-    id: "583412955905f02e4c8e6e18",
-    title: "Running a Node App",
-    created_by:	"tickle122",
-    belongs_to:	"coding",
-    votes: 4 
-  },
-  {
-    id: "583412965905f02e4c8e6e19",
-    title: "The Rise Of Thinking Machines: How IBM's Watson Takes On The World",
-    created_by:	"tickle122",
-    belongs_to:	"coding",
-    votes: 5 
-  },
-  {
-    id: "583412965905f02e4c8e6e1a",
-    title: "22 Amazing open source React projects",
-    created_by:	"grumpy19",
-    belongs_to:	"coding",
-    votes: 2
-  },
-  {
-    id: "583412965905f02e4c8e6e1b",
-    title: "Making sense of Redux",
-    created_by: "grumpy19",
-    belongs_to: "coding",
-    votes: 8 
-  },
-  {
-    id: "583412965905f02e4c8e6e1c",
-    title: "Please stop worrying about Angular 3",
-    created_by:	"happyamy2016",
-    belongs_to:	"coding",
-    votes: 10
-  }
-]
+
 
 class ArticlePage extends Component {
+  state = {
+    articles: [],
+    loading: true
+  };
+  componentDidMount () {
+    // Returns all the articles
+    fetch(`https://northcoders-news-api.herokuapp.com/api/articles`)
+      .then(res => {
+        return res.json();
+    })
+    .then(body => {
+      // console.log(body);
+      this.setState({ 
+        articles: body.articles, 
+        loading: false 
+      })
+    });
+  }
   render () {
+    const { articles, loading } = this.state;
     return (
       <div>
-        {
+        { loading ? <Loading /> : 
           articles.map((article, i) => {
             return (
               <ul className="article-page-ul" key={article.id}>

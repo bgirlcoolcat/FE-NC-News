@@ -11,7 +11,7 @@ class Article extends Component {
           <span className="far fa-thumbs-down"></span>
         </div>
         <div className="article-page-article">
-          <a href="/Article"><h2>Article Title</h2></a>
+          <h2>Article Title</h2>
           <p>By <a href="">Name</a><span> in </span><a href="">Topic</a></p>
         </div>
         <p className="article-text">Article text goes here...</p>
