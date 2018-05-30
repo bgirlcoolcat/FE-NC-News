@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
 import { Link } from 'react-router-dom';
-import './ArticlePage.css';
+import './ArticlesPage.css';
 
 
 
-class ArticlePage extends Component {
+class ArticlesPage extends Component {
   state = {
     articles: [],
     loading: true
@@ -17,7 +17,7 @@ class ArticlePage extends Component {
         return res.json();
     })
     .then(body => {
-      // console.log(body);
+      console.log(body);
       this.setState({ 
         articles: body.articles, 
         loading: false 
@@ -31,7 +31,7 @@ class ArticlePage extends Component {
         { loading ? <Loading /> : 
           articles.map((article, i) => {
             return (
-              <ul className="article-page-ul" key={article.id}>
+              <ul className="article-page-ul" key={article._id}>
               <li>
                 <div className="vote-count">
                   <span className="far fa-thumbs-up"></span>
@@ -39,7 +39,7 @@ class ArticlePage extends Component {
                   <span className="far fa-thumbs-down"></span>
                 </div>
                 <div className="article-page-article">
-                  <Link to="/article"><a href=""><h2>{article.title}</h2></a></Link>
+                  <Link to="/article"><h2>{article.title}</h2></Link>
                   <p>By <a href="">{article.created_by}</a><span> in </span><a href="">{article.belongs_to}</a></p>
                 </div>
               </li>
@@ -53,4 +53,4 @@ class ArticlePage extends Component {
 }
 
 
-export default ArticlePage;
+export default ArticlesPage;

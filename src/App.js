@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
-import ArticlePage from './components/ArticlePage';
+import ArticlesPage from './components/ArticlesPage';
 import Article from './components/Article';
 import './App.css';
 import nclogo from './components/images/nc-logo-transparent.png';
@@ -21,7 +21,7 @@ class App extends Component {
           </header>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/articles" component={ArticlePage} />
+            <Route path="/articles" component={ArticlesPage} />
             {/* <Route path="/articles/:id" component={Article} /> */}
             <Route path="/article" component={Article} />
             <Route component={NoMatch} />
