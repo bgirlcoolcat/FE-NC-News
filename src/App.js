@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import ArticlesPage from './components/ArticlesPage';
 import Article from './components/Article';
+import TopicsPage from './components/TopicsPage';
 import './App.css';
 import nclogo from './components/images/nc-logo-transparent.png';
 
@@ -24,6 +25,7 @@ class App extends Component {
             <Route path="/articles" component={ArticlesPage} />
             {/* <Route path="/articles/:id" component={Article} /> */}
             <Route path="/article" component={Article} />
+            <Route path="/topics/:topic/articles" component={TopicsPage} />
             <Route component={NoMatch} />
           </Switch>
         </div>
