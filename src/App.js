@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import ArticlesPage from './components/ArticlesPage';
 import Article from './components/Article';
 import TopicsPage from './components/TopicsPage';
+import NoMatch from './components/NoMatch';
 import './App.css';
 import nclogo from './components/images/nc-logo-transparent.png';
 
@@ -31,15 +32,6 @@ class App extends Component {
       </BrowserRouter>
     );
   }
-}
-
-const NoMatch = props => {
-  return (
-    <div className="alert alert-warning" role="alert">
-      <h2>404: Sorry - the page you have requested does not exist</h2>
-      <Link to="/">Go to the home page</Link>
-    </div>
-  ); 
 }
 
 export default App;
