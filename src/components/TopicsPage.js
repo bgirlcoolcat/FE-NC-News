@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
 import { Link } from 'react-router-dom';
-import { getTopic } from '../containers/api';
+import { fetchTopic } from '../containers/api';
 import './ArticlesPage.css';
 
 class TopicsPage extends Component {
@@ -13,7 +13,7 @@ class TopicsPage extends Component {
     console.log('componentDidMount');
     // Return all the articles for a certain topic
     const {topic} = this.props.match.params;
-    getTopic(topic)
+    fetchTopic(topic)
       .then(body => {
         console.log('Topic', body);
         this.setState({ 
@@ -30,7 +30,7 @@ class TopicsPage extends Component {
     console.log('componentWillReceiveProps');
     this.setState({ loading: true }, () => {
       const {topic} = this.props.match.params
-      getTopic(topic).then(body => {
+      fetchTopic(topic).then(body => {
         this.setState({
           articles: body.articles, 
           loading: false

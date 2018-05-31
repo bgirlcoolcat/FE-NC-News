@@ -22,9 +22,8 @@ class App extends Component {
           </header>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/articles" component={ArticlesPage} />
-            {/* <Route path="/articles/:id" component={Article} /> */}
-            <Route path="/article" component={Article} />
+            <Route exact path="/articles" component={ArticlesPage} />
+            <Route path="/articles/:articleId" component={Article} />
             <Route path="/topics/:topic/articles" component={TopicsPage} />
             <Route component={NoMatch} />
           </Switch>

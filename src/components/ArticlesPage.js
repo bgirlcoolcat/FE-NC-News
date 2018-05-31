@@ -39,7 +39,7 @@ class ArticlesPage extends Component {
                   <span className="far fa-thumbs-down"></span>
                 </div>
                 <div className="article-page-article">
-                  <Link to="/article"><h2>{article.title}</h2></Link>
+                  <Link to={`/articles/${article._id}`}><h2>{article.title}</h2></Link>
                   <p>By <a href="">{article.created_by}</a><span> in </span><a href="">{article.belongs_to}</a></p>
                 </div>
               </li>

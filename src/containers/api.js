@@ -1,4 +1,4 @@
-export const getTopic = topic => {
+export const fetchTopic = topic => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/topics/${topic}/articles`)
   .then(
     res => {
@@ -11,4 +11,11 @@ export const getTopic = topic => {
       return res.json();
     }
   )
+};
+
+export const fetchOneArticle = articleId => {
+  return fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}`)
+    .then(res => {
+      return res.json();
+    });
 };
