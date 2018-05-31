@@ -3,8 +3,6 @@ import Loading from './Loading';
 import { Link } from 'react-router-dom';
 import './ArticlesPage.css';
 
-
-
 class ArticlesPage extends Component {
   state = {
     articles: [],
@@ -29,7 +27,11 @@ class ArticlesPage extends Component {
     return (
       <div>
         { loading ? <Loading /> : 
-          articles.map((article, i) => {
+          articles
+          .filter((article) => {
+            return article.votes >= 2120
+          }).sort((a, b) => b.votes - a.votes)
+          .map((article, i) => {
             return (
               <ul className="article-page-ul" key={article._id}>
               <li>
