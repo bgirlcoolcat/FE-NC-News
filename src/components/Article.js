@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
 import { fetchOneArticle } from '../containers/api';
+import { Link } from 'react-router-dom';
 import './Article.css';
 
 class Article extends Component {
@@ -44,7 +45,7 @@ class Article extends Component {
           </div>
           <div className="article-page-article">
             <h2>{article.title}</h2>
-            <p>By <a href="">{article.created_by}</a><span> in </span><a href="">{article.belongs_to}</a></p>
+            <p>By <a href="">{article.created_by}</a><span> in </span><Link to={`/topics/${article.belongs_to}/articles`}>{article.belongs_to}</Link></p>
           </div>
           <p className="article-text">{article.body}</p>
           </article>

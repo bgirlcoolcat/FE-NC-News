@@ -57,8 +57,8 @@ class TopicsPage extends Component {
                     <span className="far fa-thumbs-down"></span>
                   </div>
                   <div className="article-page-article">
-                    <Link to="/article"><h2>{article.title}</h2></Link>
-                    <p>By <a href="">{article.created_by}</a><span> in </span><a href="">{article.belongs_to}</a></p>
+                    <Link to={`/articles/${article._id}`}><h2>{article.title}</h2></Link>
+                    <p>By <a href="">{article.created_by}</a><span> in </span><Link to={`/topics/${topic}/articles`}>{article.belongs_to}</Link></p>
                   </div>
                 </li>
                 </ul>
