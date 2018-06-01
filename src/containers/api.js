@@ -19,3 +19,11 @@ export const fetchOneArticle = articleId => {
       return res.json();
     });
 };
+
+export const fetchComments = articleId => {
+  return fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}/comments`)
+    .then(res => {
+      console.log(res);
+      return res.json();
+    });
+};

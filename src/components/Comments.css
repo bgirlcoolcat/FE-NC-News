@@ -1,18 +1,26 @@
+.container {
+  padding: 0;
+  margin-left: 56px;
+}
+
 .comments {
   padding-left: 56px;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .comment-article {
-  display: inline-block;
-  padding-left: 20px;
-  padding-top: 20px;
+  margin-top: -75px;
+  padding-left: 40px;
+  padding-bottom: 20px;
 }
 
 .commentator {
   font-size: .9em;
+  margin: 0;
+  padding-bottom: 5px
 }
 
-.comment-text {
-  margin-top: -10px;
+.comment-vote-count p {
+  margin: 0;
 }

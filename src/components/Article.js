@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
 import { fetchOneArticle } from '../containers/api';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import Comments from './Comments';
 import './Article.css';
 
 class Article extends Component {
   state = {
     article: null,
-    loading: true
+    loading: true,
+    shown: false
   };
+
+  toggle() {
+		this.setState({
+			shown: !this.state.shown
+    });
+  }
+
   componentDidMount() {
     console.log("componentDidMount");
     const { articleId } = this.props.match.params;
@@ -29,11 +37,18 @@ class Article extends Component {
       .then(article => {
         this.setState({
           article,
-          loading: false
+          loading: false,
         });
     });
   }
   render () {
+    let shown = {
+			display: this.state.shown ? "block" : "none"
+		};
+		
+		let hidden = {
+			display: this.state.shown ? "none" : "block"
+		}
     const {loading, article} = this.state;
     return (
       <div>
@@ -49,9 +64,13 @@ class Article extends Component {
             <p>By <a href="">{article.created_by}</a><span> in </span><Link to={`/topics/${article.belongs_to}/articles`}>{article.belongs_to}</Link></p>
           </div>
           <p className="article-text">{article.body}</p>
+
+          <p style={ shown } onClick={this.toggle.bind(this)}><Link to={`/articles/${article._id}/comments`}>Show comments</Link></p>
+          <p style={ hidden } onClick={this.toggle.bind(this)}><Link to={`/articles/${article._id}`}>Hide comments</Link></p>
+
           </article>
         }
-        <Comments />
+        <Route path="/articles/:articleId/comments" component={Comments} />
       </div>
     );
   }
