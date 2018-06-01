@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Loading from './Loading';
 import { fetchOneArticle } from '../containers/api';
 import { Link } from 'react-router-dom';
+import Comments from './Comments';
 import './Article.css';
 
 class Article extends Component {
@@ -50,6 +51,7 @@ class Article extends Component {
           <p className="article-text">{article.body}</p>
           </article>
         }
+        <Comments />
       </div>
     );
   }
