@@ -9,7 +9,8 @@ import './Comments.css';
 class Comments extends Component {
   state = {
     comments: [],
-    loading: true
+    loading: true,
+    articleId: this.props.match.params.articleId
   };
 
   componentDidMount () {
@@ -42,13 +43,13 @@ class Comments extends Component {
   };
 
   render () {
-    const { comments, loading } = this.state;
+    const { comments, loading, articleId } = this.state;
     return (
       <div>
         <div className="comments">
           <h4>Comments</h4>
           {/* <a href="">Add your own comment...</a> */}
-          <AddCommentsForm addComment={this.addComment} />
+          <AddCommentsForm addComment={this.addComment} articleId={articleId} />
         </div>  
         <div>
           { loading ? <Loading /> : 
