@@ -13,9 +13,12 @@ class AddCommentForm extends Component {
   };
 
   handleSubmit = event => {
+    event.preventDefault();
+
+    if (this.state.comment === "") return;
+
     // console.log('CommentForm value: ' + this.state.comment);
     this.props.addComment(this.state.comment)
-    event.preventDefault();
 
     // This clears the input
     this.setState({
