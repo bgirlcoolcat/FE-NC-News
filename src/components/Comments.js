@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { fetchComments } from '../containers/api';
+import { fetchComments, deleteComment } from '../containers/api';
 import Loading from './Loading';
 import moment from 'moment';
 import AddCommentsForm from './AddCommentForm';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 import './Comments.css';
 
 class Comments extends Component {
@@ -18,7 +18,7 @@ class Comments extends Component {
     const { articleId } = this.props.match.params;
     fetchComments(articleId)
       .then(body => {
-        console.log(body);
+        // console.log(body);
         this.setState({
           comments: body.comments, 
           loading: false
@@ -29,17 +29,33 @@ class Comments extends Component {
   addComment = comment => {
     // console.log(`Add comment with value: ${comment}`);
 
-    const commentId = uuid.v4();
+    // I don't seem to need this if I post to the api?
+    // const commentId = uuid.v4();
 
     const newComment = {
       comment,
-      commentId
+      // commentId
     };
 
     const newComments = this.state.comments.concat([newComment]);
 
-    this.setState({ comments: newComments });
+    this.setState({ 
+      comments: newComments 
+    });
+  };
 
+  removeNCComment = comment => {
+    // console.log('Remove NCComment:', comment);
+
+    const updatedComments = this.state.comments.filter(item => {
+      return item !== comment;
+    })
+
+    this.setState({
+      comments: updatedComments
+    })
+
+    deleteComment(comment._id)
   };
 
   render () {
@@ -65,6 +81,7 @@ class Comments extends Component {
                   <div className="comment-article">
                     <p className="commentator">Posted by <a href="">{comment.created_by || "northcoder"}</a><span> - </span>{date.startOf('minute').fromNow()}</p>
                     <p className="comment-text">{comment.body || comment.comment}</p>
+                    <button onClick={(e) => this.removeNCComment(comment)} type="button">Delete comment</button>
                   </div>
                 </article>
               );

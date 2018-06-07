@@ -38,6 +38,7 @@ class AddCommentForm extends Component {
       console.log(json);
     })
 
+    // This clears the input
     this.setState({
       comment: ""
     });

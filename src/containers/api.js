@@ -27,3 +27,12 @@ export const fetchComments = articleId => {
       return res.json();
     });
 };
+
+export const deleteComment = commentId => {
+  return fetch(`https://northcoders-news-api.herokuapp.com/api/comments/${commentId}`, {
+    method: 'DELETE',
+    mode: 'cors',
+  })
+  .then(res => res)
+  .catch(err => err);
+}
