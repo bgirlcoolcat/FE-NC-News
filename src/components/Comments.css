@@ -25,3 +25,7 @@
 .comment-vote-count p {
   margin: 0;
 }
+
+.btn-delete-comment {
+  font-size: 0.75rem;
+}

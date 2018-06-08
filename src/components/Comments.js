@@ -47,15 +47,17 @@ class Comments extends Component {
   removeNCComment = comment => {
     // console.log('Remove NCComment:', comment);
 
-    const updatedComments = this.state.comments.filter(item => {
-      return item !== comment;
-    })
+    if (comment.created_by === "northcoder") {
+      const updatedComments = this.state.comments.filter(item => {
+        return item !== comment;
+      })
 
-    this.setState({
-      comments: updatedComments
-    })
+      this.setState({
+        comments: updatedComments
+      })
 
-    deleteComment(comment._id)
+      deleteComment(comment._id)
+    }
   };
 
   render () {
@@ -81,7 +83,7 @@ class Comments extends Component {
                   <div className="comment-article">
                     <p className="commentator">Posted by <a href="">{comment.created_by || "northcoder"}</a><span> - </span>{date.startOf('minute').fromNow()}</p>
                     <p className="comment-text">{comment.body || comment.comment}</p>
-                    <button onClick={(e) => this.removeNCComment(comment)} type="button">Delete comment</button>
+                    {comment.created_by === "northcoder" ? <button className="btn-delete-comment" onClick={(e) => this.removeNCComment(comment)}>Delete comment</button> : <button className="btn-delete-comment" onClick={()=>{ alert('You are not authorised to delete a comment posted by another user') }}>Delete comment</button>}
                   </div>
                 </article>
               );
