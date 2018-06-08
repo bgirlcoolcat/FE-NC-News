@@ -58,7 +58,13 @@ class TopicsPage extends Component {
                   </div>
                   <div className="article-page-article">
                     <Link to={`/articles/${article._id}/comments`}><h2>{article.title}</h2></Link>
-                    <p>By <a href="">{article.created_by}</a><span> in </span><Link to={`/topics/${topic}/articles`}>{article.belongs_to}</Link><span className="far fa-comments"></span><Link to={`/articles/${article._id}/comments`}>{article.comments} comments</Link></p>
+                    <p>By 
+                      <Link to={`/users/${article.created_by}`}> {article.created_by}</Link>
+                      <span> in </span>
+                      <Link to={`/topics/${topic}/articles`}>{article.belongs_to}</Link>
+                      <span className="far fa-comments"></span>
+                      <Link to={`/articles/${article._id}/comments`}>{article.comments} comments</Link>
+                    </p>
                   </div>
                 </li>
                 </ul>

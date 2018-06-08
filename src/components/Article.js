@@ -61,7 +61,7 @@ class Article extends Component {
           </div>
           <div className="article-page-article">
             <h2>{article.title}</h2>
-            <p>By <a href="">{article.created_by}</a><span> in </span><Link to={`/topics/${article.belongs_to}/articles`}>{article.belongs_to}</Link></p>
+            <p>By <Link to={`/users/${article.created_by}`}>{article.created_by}</Link><span> in </span><Link to={`/topics/${article.belongs_to}/articles`}>{article.belongs_to}</Link></p>
           </div>
           <p className="article-text">{article.body}</p>
 

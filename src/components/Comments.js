@@ -3,6 +3,7 @@ import { fetchComments, deleteComment } from '../containers/api';
 import Loading from './Loading';
 import moment from 'moment';
 import AddCommentsForm from './AddCommentForm';
+import { Link } from 'react-router-dom';
 // import uuid from 'uuid';
 import './Comments.css';
 
@@ -81,7 +82,7 @@ class Comments extends Component {
                     <span className="far fa-thumbs-down"></span>
                   </div>
                   <div className="comment-article">
-                    <p className="commentator">Posted by <a href="">{comment.created_by || "northcoder"}</a><span> - </span>{date.startOf('minute').fromNow()}</p>
+                    <p className="commentator">Posted by <Link to={`/users/${comment.created_by}`}>{comment.created_by || "northcoder"}</Link><span> - </span>{date.startOf('minute').fromNow()}</p>
                     <p className="comment-text">{comment.body || comment.comment}</p>
                     {comment.created_by === "northcoder" ? <button className="btn-delete-comment" onClick={(e) => this.removeNCComment(comment)}>Delete comment</button> : <button className="btn-delete-comment" onClick={()=>{ alert('You are not authorised to delete a comment posted by another user') }}>Delete comment</button>}
                   </div>
