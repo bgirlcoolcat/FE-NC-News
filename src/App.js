@@ -9,7 +9,7 @@ import TopicsPage from './components/TopicsPage';
 import NoMatch from './components/NoMatch';
 import './App.css';
 import nclogo from './components/images/nc-logo-transparent.png';
-
+import User from './components/User'; 
 
 class App extends Component {
   render() {
@@ -25,6 +25,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/articles" component={ArticlesPage} />
             <Route path="/articles/:articleId" component={Article} />
+            <Route exact path="/users/:username" component={User} />
             <Route exact path="/topics/:topic/articles" component={TopicsPage} />
             <Route component={NoMatch} />
           </Switch>
