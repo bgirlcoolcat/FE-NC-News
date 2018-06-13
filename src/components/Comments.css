@@ -29,3 +29,21 @@
 .btn-delete-comment {
   font-size: 0.75rem;
 }
+
+
+.btn-vote {
+  background-color: white;
+  border: none;
+}
+
+.btn-vote:focus {
+  outline: 0;
+}
+
+.fa-thumbs-up:hover {
+  color: red;
+}
+
+.fa-thumbs-down:hover {
+  color: red;
+}
