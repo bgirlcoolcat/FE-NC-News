@@ -11,17 +11,26 @@ class Comment extends Component {
     this.props.onDeleteComment(this.props.id);
   }
 
+  handleUpVoteClick = () => {
+    this.props.onUpVote(this.props.id);
+    // id is what I called it in Comments.js
+  }
+
+  handleDownVoteClick = () => {
+    this.props.onDownVote(this.props.id);
+  }
+
   render () {
       const date = moment(this.props.created_at)
       return (
         <article className="comments">
 
             <div className="comment-vote-count">
-              <button className="btn-vote">
+              <button className="btn-vote" onClick={this.handleUpVoteClick}>
                 <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
               </button>
                 <p>{this.props.votes || 0}</p>
-              <button className="btn-vote">
+              <button className="btn-vote" onClick={this.handleDownVoteClick}>
                 <span className="far fa-thumbs-down" data-toggle="tooltip" title="Vote down"></span>
               </button>
             </div>

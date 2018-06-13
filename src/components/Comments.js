@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { fetchComments, deleteComment } from '../containers/api';
 import Loading from './Loading';
-import AddCommentsForm from './AddCommentForm';
-// import uuid from 'uuid';
 import Comment from './Comment';
+import { fetchComments, deleteComment } from '../containers/api';
+import AddCommentsForm from './AddCommentForm';
 import './Comments.css';
+
 
 class Comments extends Component {
   state = {
@@ -55,6 +55,48 @@ class Comments extends Component {
 
   };
 
+  handleUpVoteEvent = commentId => {
+    const updatedVotes = this.state.comments.map(comment => {
+      if (comment._id === commentId) {
+        return Object.assign({}, comment, {
+          votes: comment.votes + 1
+        });
+      } else {
+        return comment;
+      }
+    });
+
+    this.setState({
+      comments: updatedVotes
+    });
+
+    fetch(`http://northcoders-news-api.herokuapp.com/api/comments/${commentId}?vote=up`, { 
+      method: 'PUT'
+    })
+    .catch(error => console.error('Error:', error));
+  };
+
+  handleDownVoteEvent = commentId => {
+    const updatedVotes = this.state.comments.map(comment => {
+      if (comment._id === commentId) {
+        return Object.assign({}, comment, {
+          votes: comment.votes - 1
+        });
+      } else {
+        return comment;
+      }
+    });
+
+    this.setState({
+      comments: updatedVotes
+    });
+
+    fetch(`http://northcoders-news-api.herokuapp.com/api/comments/${commentId}?vote=down`, { 
+      method: 'PUT' 
+    })
+    .catch(error => console.error('Error:', error));
+  };
+
   render () {
     const { comments, loading, articleId } = this.state;
     return (
@@ -62,26 +104,28 @@ class Comments extends Component {
         <div className="comments">
           <h4>Comments</h4>
           <AddCommentsForm addComment={this.addComment} articleId={articleId} />
-        </div>  
+        </div>
 
-          { loading ? <Loading /> : 
+          { loading ? <Loading /> :
             comments.map((comment, commentId) => {
               return (
                 // <article key={comment._id || commentId} className="container">
                   <Comment 
-                  key={comment._id || commentId}
-                  id={comment._id || commentId}
-                  created_at={comment.created_at}
-                  created_by={comment.created_by}
-                  votes={comment.votes}
-                  body={comment.body || comment.comment}
-                  onDeleteComment={this.handleDeleteCommentEvent}
-                />
+                    key={comment._id || commentId}
+                    id={comment._id || commentId}
+                    created_at={comment.created_at}
+                    created_by={comment.created_by}
+                    votes={comment.votes}
+                    body={comment.body || comment.comment}
+                    onDeleteComment={this.handleDeleteCommentEvent}
+                    onUpVote={this.handleUpVoteEvent}
+                    onDownVote={this.handleDownVoteEvent}
+                  />
                 // </article>
               )
             })
           }
-        </div>
+      </div>
     );
   }
 }
