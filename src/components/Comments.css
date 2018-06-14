@@ -40,10 +40,27 @@
   outline: 0;
 }
 
-.fa-thumbs-up:hover {
+.btn-vote:hover {
+  color: red;
+}
+
+.btn-voted {
+  background-color: white;
+  border: none;
+}
+
+.btn-voted:focus {
+  outline: 0;
+}
+
+.btn-voted:hover {
+  color: gray;
+}
+
+/* .fa-thumbs-up:hover {
   color: red;
 }
 
 .fa-thumbs-down:hover {
   color: red;
-}
+} */
