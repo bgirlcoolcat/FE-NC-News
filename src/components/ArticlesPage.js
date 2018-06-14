@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
-import { Link } from 'react-router-dom';
+import ArticleListing from './ArticleListing';
 import './ArticlesPage.css';
 
 class ArticlesPage extends Component {
@@ -33,25 +33,15 @@ class ArticlesPage extends Component {
           }).sort((a, b) => b.votes - a.votes)
           .map((article, i) => {
             return (
-              <ul className="article-page-ul" key={article._id}>
-              <li>
-                <div className="vote-count">
-                  <span className="far fa-thumbs-up"></span>
-                  <p>{article.votes}</p>
-                  <span className="far fa-thumbs-down"></span>
-                </div>
-                <div className="article-page-article">
-                <Link to={`/articles/${article._id}/comments`}><h2>{article.title}</h2></Link>
-                <p>By
-                    <Link to={`/users/${article.created_by}`}> {article.created_by}</Link>
-                    <span> in </span>
-                    <Link to={`/topics/${article.belongs_to}/articles`}>{article.belongs_to}</Link>
-                    <span className="far fa-comments"></span>
-                    <Link to={`/articles/${article._id}/comments`}>{article.comments} comments</Link>
-                </p>
-                </div>
-              </li>
-              </ul>
+              <ArticleListing 
+                key={article._id}
+                id={article._id}
+                belongs_to={article.belongs_to}
+                created_by={article.created_by}
+                votes={article.votes}
+                title={article.title}
+                comments={article.comments}
+              />
             );
           })
         }
