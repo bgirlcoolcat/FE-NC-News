@@ -42,6 +42,19 @@ class Article extends Component {
         });
     });
   }
+
+  handleUpVoteEvent = () => {
+    this.setState({
+      article: Object.assign({}, this.state.article, { votes: this.state.article.votes + 1 })
+    });
+  };
+
+  handleDownVoteEvent = () => {
+    this.setState({
+      article: Object.assign({}, this.state.article, { votes: this.state.article.votes - 1 })
+    });
+  };
+
   render () {
     let shown = {
 			display: this.state.shown ? "block" : "none"
@@ -58,6 +71,8 @@ class Article extends Component {
           <ArticleVotes 
             id={article._id} 
             votes={article.votes}
+            onUpVote={this.handleUpVoteEvent}
+            onDownVote={this.handleDownVoteEvent}
           />
           <div className="article-page-article">
             <h2>{article.title}</h2>
