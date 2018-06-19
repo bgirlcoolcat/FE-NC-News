@@ -44,15 +44,25 @@ class Article extends Component {
   }
 
   handleUpVoteEvent = () => {
+    const { articleId } = this.props.match.params;
     this.setState({
       article: Object.assign({}, this.state.article, { votes: this.state.article.votes + 1 })
     });
+    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=up`, { 
+      method: 'PUT' 
+    })
+    .catch(error => console.error('Error:', error));
   };
 
   handleDownVoteEvent = () => {
+    const { articleId } = this.props.match.params;
     this.setState({
       article: Object.assign({}, this.state.article, { votes: this.state.article.votes - 1 })
     });
+    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=down`, { 
+      method: 'PUT' 
+    })
+    .catch(error => console.error('Error:', error));
   };
 
   render () {

@@ -39,6 +39,10 @@ class ArticlesPage extends Component {
       articles: updatedArticleVotes
     });
 
+    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=up`, { 
+      method: 'PUT'
+    })
+    .catch(error => console.error('Error:', error));
   };
 
   handleDownVoteEvent = articleId => {
@@ -55,7 +59,11 @@ class ArticlesPage extends Component {
     this.setState({
       articles: updatedArticleVotes
     });
-    
+
+    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=down`, { 
+      method: 'PUT'
+    })
+    .catch(error => console.error('Error:', error));
   };
 
   render () {
