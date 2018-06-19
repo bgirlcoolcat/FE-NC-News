@@ -39,6 +39,41 @@ class TopicsPage extends Component {
       }); 
     })
   }
+
+  handleUpVoteEvent = articleId => {
+    const updatedArticleVotes = this.state.articles.map(article => {
+      if (article._id === articleId) {
+        return Object.assign({}, article, {
+          votes: article.votes + 1
+        });
+      } else {
+        return article;
+      }
+    });
+
+    this.setState({
+      articles: updatedArticleVotes
+    });
+
+  };
+
+  handleDownVoteEvent = articleId => {
+    const updatedArticleVotes = this.state.articles.map(article => {
+      if (article._id === articleId) {
+        return Object.assign({}, article, {
+          votes: article.votes - 1
+        });
+      } else {
+        return article;
+      }
+    });
+
+    this.setState({
+      articles: updatedArticleVotes
+    });
+
+  };
+
   render () {
     const { articles, loading } = this.state;
     const { topic } = this.props.match.params;
@@ -55,6 +90,8 @@ class TopicsPage extends Component {
                     <ArticleVotes 
                       id={article._id}
                       votes={article.votes}
+                      onUpVote={this.handleUpVoteEvent}
+                      onDownVote={this.handleDownVoteEvent}
                     />
                     <ArticleListing 
                       key={article._id}
