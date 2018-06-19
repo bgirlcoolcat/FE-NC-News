@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
 import ArticleListing from './ArticleListing';
+import ArticleVotes from './ArticleVotes';
 import './ArticlesPage.css';
 
 class ArticlesPage extends Component {
@@ -15,13 +16,14 @@ class ArticlesPage extends Component {
         return res.json();
     })
     .then(body => {
-      console.log(body);
+      // console.log(body);
       this.setState({ 
         articles: body.articles, 
         loading: false 
       })
     });
   }
+
   render () {
     const { articles, loading } = this.state;
     return (
@@ -33,15 +35,21 @@ class ArticlesPage extends Component {
           }).sort((a, b) => b.votes - a.votes)
           .map((article, i) => {
             return (
-              <ArticleListing 
-                key={article._id}
-                id={article._id}
-                belongs_to={article.belongs_to}
-                created_by={article.created_by}
-                votes={article.votes}
-                title={article.title}
-                comments={article.comments}
-              />
+              <ul className="article-page-ul" key={article._id}>
+                <li>
+                  <ArticleVotes 
+                    id={article._id}
+                    votes={article.votes}
+                  />
+                  <ArticleListing 
+                    id={article._id}
+                    belongs_to={article.belongs_to}
+                    created_by={article.created_by}
+                    title={article.title}
+                    comments={article.comments}
+                  />
+                </li>
+              </ul>
             );
           })
         }

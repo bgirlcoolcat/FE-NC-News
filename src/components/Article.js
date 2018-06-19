@@ -3,6 +3,7 @@ import Loading from './Loading';
 import { fetchOneArticle } from '../containers/api';
 import { Link, Route } from 'react-router-dom';
 import Comments from './Comments';
+import ArticleVotes from './ArticleVotes';
 import './Article.css';
 
 class Article extends Component {
@@ -19,7 +20,7 @@ class Article extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
+    // console.log("componentDidMount");
     const { articleId } = this.props.match.params;
     fetchOneArticle(articleId)
       .then(article => {
@@ -54,11 +55,10 @@ class Article extends Component {
       <div>
         { loading ? <Loading /> : 
           <article className="article"  key={article._id}>
-          <div className="vote-count">
-            <span className="far fa-thumbs-up"></span>
-            <p>{article.votes}</p>
-            <span className="far fa-thumbs-down"></span>
-          </div>
+          <ArticleVotes 
+            id={article._id} 
+            votes={article.votes}
+          />
           <div className="article-page-article">
             <h2>{article.title}</h2>
             <p>By <Link to={`/users/${article.created_by}`}>{article.created_by}</Link><span> in </span><Link to={`/topics/${article.belongs_to}/articles`}>{article.belongs_to}</Link></p>

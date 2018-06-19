@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Loading from './Loading';
 import { fetchTopic } from '../containers/api';
 import ArticleListing from './ArticleListing';
+import ArticleVotes from './ArticleVotes';
 import './ArticlesPage.css';
 
 class TopicsPage extends Component {
@@ -49,15 +50,23 @@ class TopicsPage extends Component {
           articles
             .map((article) => {
               return (
-                <ArticleListing 
-                  key={article._id}
-                  id={article._id}
-                  belongs_to={article.belongs_to}
-                  created_by={article.created_by}
-                  votes={article.votes}
-                  title={article.title}
-                  comments={article.comments}
-                />
+                <ul className="article-page-ul" key={article._id}>
+                  <li>
+                    <ArticleVotes 
+                      id={article._id}
+                      votes={article.votes}
+                    />
+                    <ArticleListing 
+                      key={article._id}
+                      id={article._id}
+                      belongs_to={article.belongs_to}
+                      created_by={article.created_by}
+                      votes={article.votes}
+                      title={article.title}
+                      comments={article.comments}
+                    />
+                  </li>
+                </ul>
               );
             })
         }
