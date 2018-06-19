@@ -1,21 +1,45 @@
 import React, { Component } from 'react';
 
 class ArticleVotes extends Component {
-  state={};
+  state = {
+    upVoted: false,
+    downVoted: false,
+  };
 
-  handleUpVoteClick = () => this.props.onUpVote(this.props.id);
-  handleDownVoteClick = () => this.props.onDownVote(this.props.id);
+  handleUpVoteClick = () => {
+    this.setState({
+      upVoted: !this.state.upVoted
+    })
+    this.props.onUpVote(this.props.id);
+  }
+
+  handleDownVoteClick = () => {
+    this.setState({
+      downVoted: !this.state.downVoted
+    })
+    this.props.onDownVote(this.props.id);
+  }
 
   render () {
     return (
       <div className="vote-count">
-        <button className="btn-vote" onClick={this.handleUpVoteClick}>
-          <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
-        </button>
+        { this.state.upVoted ? 
+          <button className="btn-voted" onClick={this.handleUpVoteClick} disabled> 
+            <span className="far fa-thumbs-up" data-toggle="tooltip" title="You have already voted"></span>
+          </button> :
+          <button className="btn-vote" onClick={this.handleUpVoteClick}>
+            <span className="far fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
+          </button> 
+        }
         <p>{this.props.votes}</p>
-        <button className="btn-vote" onClick={this.handleDownVoteClick}>
-          <span className="far fa-thumbs-down" data-toggle="tooltip" title="Vote down"></span>
-        </button>
+        { this.state.downVoted ? 
+          <button className="btn-voted" onClick={this.handleDownVoteClick} disabled>
+            <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted"></span>
+          </button> :
+          <button className="btn-vote" onClick={this.handleDownVoteClick}>
+            <span className="far fa-thumbs-down" data-toggle="tooltip" title="Vote down"></span>
+          </button>
+        }
       </div>
     );
   }
