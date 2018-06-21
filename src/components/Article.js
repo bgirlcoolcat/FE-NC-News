@@ -77,7 +77,7 @@ class Article extends Component {
     return (
       <div>
         { loading ? <Loading /> : 
-          <article className="article"  key={article._id}>
+          <article className="article" key={article._id}>
           <ArticleVotes 
             id={article._id} 
             votes={article.votes}
@@ -85,14 +85,12 @@ class Article extends Component {
             onDownVote={this.handleDownVoteEvent}
           />
           <div className="article-page-article">
-            <h2>{article.title}</h2>
-            <p>By <Link to={`/users/${article.created_by}`}>{article.created_by}</Link><span> in </span><Link to={`/topics/${article.belongs_to}/articles`}>{article.belongs_to}</Link></p>
+            <h2 className="article-h2"><span className="opening-tag">{"<"}</span>{article.title} <span className="closing-tag">/></span></h2>
+            <p>By <Link to={`/users/${article.created_by}`} style={{ color: '#c1002e' }}>{article.created_by}</Link><span> in </span><Link to={`/topics/${article.belongs_to}/articles`} style={{ color: '#c1002e' }}>{article.belongs_to}</Link></p>
           </div>
           <p className="article-text">{article.body}</p>
-
           <p style={ shown } onClick={this.toggle.bind(this)}><Link to={`/articles/${article._id}/comments`}>Show comments</Link></p>
           <p style={ hidden } onClick={this.toggle.bind(this)}><Link to={`/articles/${article._id}`}>Hide comments</Link></p>
-
           </article>
         }
         <Route path="/articles/:articleId/comments" component={Comments} />

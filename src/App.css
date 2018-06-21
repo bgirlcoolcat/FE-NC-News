@@ -17,3 +17,25 @@
 .App-title {
   font-size: 1.5em;
 }
+
+h2 {
+  color: #0B0C0C;
+}
+
+a h2:hover {
+  color: #c1002e;
+  text-decoration: underline;
+  text-decoration-color: #c1002e;
+}
+
+h5 {
+  font-weight: 700;
+}
+
+.opening-tag {
+  color: #c1002e;
+}
+
+.closing-tag {
+  color: #c1002e;
+}

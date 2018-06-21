@@ -88,7 +88,7 @@ class TopicsPage extends Component {
     // console.log(topic);
     return (
       <div>
-        <h5 style={{ padding: '20px 0 20px 56px' }}>{articles.length} {topic} articles</h5>
+        <h5 style={{ padding: '20px 0 20px 56px' }}><span className="opening-tag">{"<"}</span>{articles.length} {topic} articles <span className="closing-tag">/></span></h5>
         { loading ? <Loading /> : 
           articles
             .map((article) => {
@@ -102,11 +102,9 @@ class TopicsPage extends Component {
                       onDownVote={this.handleDownVoteEvent}
                     />
                     <ArticleListing 
-                      key={article._id}
                       id={article._id}
                       belongs_to={article.belongs_to}
                       created_by={article.created_by}
-                      votes={article.votes}
                       title={article.title}
                       comments={article.comments}
                     />
