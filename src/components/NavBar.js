@@ -1,18 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { fetchTopics } from '../containers/api';
 import './NavBar.css';
 
-const NavBar = () => {
-  return (
-    <nav className="navbar navbar-expand-lg">
-      <ul className="nav-ul">
-        <NavLink exact to="/" className="nav-a"><li className="nav-li">Home | </li></NavLink>
-        <NavLink to="/topics/football/articles" className="nav-a"><li className="nav-li">Football | </li></NavLink>
-        <NavLink to="/topics/cooking/articles" className="nav-a"><li className="nav-li">Cooking | </li></NavLink>
-        <NavLink to="/topics/coding/articles" className="nav-a"><li className="nav-li">Coding</li></NavLink>
-      </ul>
-    </nav>
-  );
+class NavBar extends Component {
+  state = {
+    topics: [],
+  };
+
+  componentDidMount () {
+    // Returns all the topics
+    fetchTopics()
+    .then(body => {
+      console.log('Topics:', body);
+      this.setState({ 
+        topics: body.topics, 
+        loading: false 
+      })
+    });
+  }
+
+  render () {
+    const { topics } = this.state;
+    return (
+      // eslint-disable-next-line
+      <nav role="navigation" className="navbar navbar-expand-lg">
+        <ul className="nav-ul">
+
+          <NavLink exact to="/" className="nav-a"><button className="nav-btn"><li className="nav-li">Home</li></button></NavLink>
+          { 
+            topics.map(topic => {
+              return <NavLink key={topic._id} to={`/topics/${topic.slug}/articles`} className="nav-a"><button className="nav-btn"><li className="nav-li">{topic.title}</li></button></NavLink>
+            }) 
+          }
+        </ul>
+      </nav>
+    );
+  }
 }
 
 export default NavBar;

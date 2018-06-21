@@ -1,5 +1,6 @@
 .nav-ul {
   list-style-type: none;
+  margin-left: -16px;
 }
 
 .nav-li {
@@ -7,5 +8,48 @@
 }
 
 .nav-a {
+  color: white;
+  font-size: 1rem;
+}
+
+.nav-a:after {
+  content: " | ";
+  color: white;
+  font-weight: normal;
+}
+
+.nav-a:last-child:after {
+  content: ""; /* remove the pipe from the last list item */
+}
+
+.nav-a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-btn {
+  border: none;
+  background-color: #373737;
+  color: white;
+}
+
+.nav-btn:hover {
+  border: none;
+  outline: none;
+  background-color: #c1002e;
+  color: white;
+}
+
+.nav-btn:focus {
+  outline:0;
+  border: none;
+  background-color: #c1002e;
+  color: white;
+}
+
+.active .nav-btn {
+  border: none;
+  outline: none;
+  background-color: #c1002e;
   color: white;
 }

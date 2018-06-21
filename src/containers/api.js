@@ -36,3 +36,13 @@ export const deleteComment = commentId => {
   .then(res => res)
   .catch(err => err);
 }
+
+export const fetchTopics = () => {
+  return fetch(`https://northcoders-news-api.herokuapp.com/api/topics`)
+  .then(res => {
+    if(res.status === 404) {
+      return Promise.reject(new Error("Topics not found"));
+    }
+    return res.json();
+  })
+};
