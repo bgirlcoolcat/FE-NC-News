@@ -31,7 +31,7 @@ class ArticleVotes extends Component {
             <span className="far fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
           </button> 
         }
-        <p>{this.props.votes}</p>
+        <p style={{ fontWeight: 700 }}>{this.props.votes}</p>
         { this.state.downVoted ? 
           <button className="btn-voted" onClick={this.handleDownVoteClick} disabled>
             <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted"></span>

@@ -5,10 +5,12 @@
 
 .vote-count {
   display: inline-block;
+  text-align: center;
 }
 
 .vote-count p {
   margin: 0;
+  color: #0B0C0C;
 }
 
 .article-page-article {
