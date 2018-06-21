@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PT from 'prop-types';
+import './AddCommentForm.css';
 
 class AddCommentForm extends Component {
   state = {
@@ -49,13 +49,20 @@ class AddCommentForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <input 
-          type="text"
-          placeholder=" Add a comment..."
-          value={comment}
-          onChange={this.handleCommentChange}
-        />
-        <button type="submit">Add</button>
+        <div className="form-row">
+          <div className="col-sm-10">
+            <input 
+            className="form-control" 
+            type="text" 
+            placeholder="Add a comment..."
+            value={comment}
+            onChange={this.handleCommentChange}
+            />
+          </div>
+          <div className="col-sm-2">
+            <button className="btn btn-danger" type="submit"><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></button>
+          </div>
+        </div>
       </form>
     );
   }
