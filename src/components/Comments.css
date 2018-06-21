@@ -1,18 +1,18 @@
-.container {
-  padding: 15px 0 0 0;
-  margin-left: 56px;
-}
-
 .comments {
   padding-left: 56px;
   padding-top: 20px;
-  padding-bottom: 20px;
+  background-color: #f2f2f2;
+}
+
+.comments-header {
+  font-weight: 700;
 }
 
 .comment-article {
-  margin-top: -75px;
-  padding-left: 40px;
+  margin-top: -80px;
+  padding-left: 50px;
   padding-bottom: 20px;
+  border-bottom: dotted #595959 1px;
 }
 
 .commentator {
@@ -20,16 +20,19 @@
   margin: 0;
   padding-bottom: 5px;
   padding-top: 5px;
+  color: #595959;
 }
+
+.comment-vote-count {
+  display: inline-block;
+}
+
 
 .comment-vote-count p {
   margin: 0;
+  color: #0B0C0C;
+  text-align: center;
 }
-
-.btn-delete-comment {
-  font-size: 0.75rem;
-}
-
 
 .btn-vote {
   background-color: white;
@@ -41,7 +44,7 @@
 }
 
 .btn-vote:hover {
-  color: red;
+  color: #c1002e;
 }
 
 .btn-voted {
@@ -57,10 +60,28 @@
   color: gray;
 }
 
-/* .fa-thumbs-up:hover {
-  color: red;
+.btn-vote-comment {
+  background-color: #f2f2f2;
+  border: none;
 }
 
-.fa-thumbs-down:hover {
-  color: red;
-} */
+.btn-vote-comment:focus {
+  outline: 0;
+}
+
+.btn-vote-comment:hover {
+  color: #c1002e;
+}
+
+.btn-voted-comment {
+  background-color: #f2f2f2;
+  border: none;
+}
+
+.btn-voted-comment:focus {
+  outline: 0;
+}
+
+.btn-voted-comment:hover {
+  color: gray;
+}

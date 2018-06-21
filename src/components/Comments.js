@@ -10,7 +10,9 @@ class Comments extends Component {
   state = {
     comments: [],
     loading: true,
-    articleId: this.props.match.params.articleId
+    articleId: this.props.match.params.articleId,
+    upVoted: false,
+    downVoted: false,
   };
 
   componentDidMount () {
@@ -102,7 +104,7 @@ class Comments extends Component {
     return (
       <div>
         <div className="comments">
-          <h4>Comments</h4>
+        <h4 className="comments-header"><span className="opening-tag">{"<"}</span>Comments <span className="closing-tag">/></span></h4>
           <AddCommentsForm addComment={this.addComment} articleId={articleId} />
         </div>
 

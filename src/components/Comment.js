@@ -33,34 +33,34 @@ class Comment extends Component {
 
           <div className="comment-vote-count">
           { this.state.upVoted ? 
-            <button className="btn-voted" onClick={this.handleUpVoteClick} disabled> 
+            <button className="btn-voted-comment" onClick={this.handleUpVoteClick} disabled> 
               <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="You have already voted"></span>
             </button> :
-            <button className="btn-vote" onClick={this.handleUpVoteClick}>
+            <button className="btn-vote-comment" onClick={this.handleUpVoteClick}>
               <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
             </button> 
           }
-            <p>{this.props.votes || 0}</p>
+            <p style={{ fontWeight: 700 }}>{this.props.votes || 0}</p>
           { this.state.downVoted ? 
-            <button className="btn-voted" onClick={this.handleDownVoteClick} disabled>
+            <button className="btn-voted-comment" onClick={this.handleDownVoteClick} disabled>
               <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted"></span>
             </button> :
-            <button className="btn-vote" onClick={this.handleDownVoteClick}>
+            <button className="btn-vote-comment" onClick={this.handleDownVoteClick}>
               <span className="far fa-thumbs-down" data-toggle="tooltip" title="Vote down"></span>
             </button>
           }
           </div>
             
           <div className="comment-article">
-            <p className="commentator">Posted by <Link to={`/users/${this.props.created_by}`}>{this.props.created_by || "northcoder"}</Link><span> - </span>{date.startOf('minute').fromNow()}</p>
+          <p className="commentator">Posted by <Link to={`/users/${this.props.created_by}`} style={{ color: '#c1002e' }}>{this.props.created_by || "northcoder"}</Link><span> - </span>{date.startOf('minute').fromNow()}</p>
             <p className="comment-text">{this.props.body || this.props.comment}</p>
             
             {this.props.created_by === "northcoder" ? 
-            <button className="btn-delete-comment" onClick={this.handleDeleteCommentClick}>
-            Delete comment
+            <button className="btn btn-outline-secondary btn-sm" onClick={this.handleDeleteCommentClick}>
+            <span className="opening-tag-delete-btn">{"<"}</span>Delete comment <span className="closing-tag-delete-btn">/></span>
             </button> : 
-            <button className="btn-delete-comment" onClick={()=>{ alert('You are not authorised to delete a comment posted by another user') }}>
-            Delete comment
+            <button className="btn btn-outline-secondary btn-sm" onClick={()=>{ alert('You are not authorised to delete a comment posted by another user') }}>
+            <span className="opening-tag-delete-btn">{"<"}</span>Delete comment <span className="closing-tag-delete-btn">/></span>
             </button>}
           </div>
             
