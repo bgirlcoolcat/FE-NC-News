@@ -40,7 +40,7 @@ class Comment extends Component {
               <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
             </button> 
           }
-            <p style={{ fontWeight: 700 }}>{this.props.votes || 0}</p>
+            <p><span className="badge badge-pill badge-danger">{this.props.votes || 0}</span></p>
           { this.state.downVoted ? 
             <button className="btn-voted-comment" onClick={this.handleDownVoteClick} disabled>
               <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted"></span>
