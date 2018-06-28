@@ -3,7 +3,7 @@ import Loading from './Loading';
 import { fetchTopic } from '../containers/api';
 import ArticleListing from './ArticleListing';
 import ArticleVotes from './ArticleVotes';
-import './ArticlesPage.css';
+
 
 class TopicsPage extends Component {
   state = {
@@ -87,20 +87,27 @@ class TopicsPage extends Component {
     const { topic } = this.props.match.params;
     // console.log(topic);
     return (
-      <div>
-        <h5 style={{ padding: '20px 0 20px 56px' }}><span className="opening-tag">{"<"}</span>{articles.length} {topic} articles <span className="closing-tag">/></span></h5>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            <h5 style={{ padding: '20px 0' }}><span className="opening-tag">{"<"}</span>{articles.length} {topic} articles <span className="closing-tag">/></span></h5>
+          </div>
+        </div>
+        
         { loading ? <Loading /> : 
           articles
             .map((article) => {
               return (
-                <ul className="article-page-ul" key={article._id}>
-                  <li>
+                <div className="row" key={article._id}>
+                  <div className="col-sm-1">
                     <ArticleVotes 
                       id={article._id}
                       votes={article.votes}
                       onUpVote={this.handleUpVoteEvent}
                       onDownVote={this.handleDownVoteEvent}
                     />
+                  </div>
+                  <div className="col-sm-11 pb-3">
                     <ArticleListing 
                       id={article._id}
                       belongs_to={article.belongs_to}
@@ -108,8 +115,8 @@ class TopicsPage extends Component {
                       title={article.title}
                       comments={article.comments}
                     />
-                  </li>
-                </ul>
+                  </div>
+                </div>
               );
             })
         }

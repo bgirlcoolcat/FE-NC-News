@@ -1,9 +1,11 @@
 import React from "react";
 
 const Loading = () => (
-  <h2 style={{ paddingLeft: '56px' }}>
-    Loading...
-  </h2>
+  <div className="container pt-4">
+    <h2>
+      Loading...
+    </h2>
+  </div>
 );
 
 export default Loading;

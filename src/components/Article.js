@@ -76,23 +76,29 @@ class Article extends Component {
     const {loading, article} = this.state;
     return (
       <div>
+        <div className="container">
         { loading ? <Loading /> : 
-          <article className="article" key={article._id}>
-          <ArticleVotes 
-            id={article._id} 
-            votes={article.votes}
-            onUpVote={this.handleUpVoteEvent}
-            onDownVote={this.handleDownVoteEvent}
-          />
-          <div className="article-page-article">
-            <h2 className="article-h2"><span className="opening-tag">{"<"}</span>{article.title} <span className="closing-tag">/></span></h2>
-            <p>By <Link to={`/users/${article.created_by}`} style={{ color: '#c1002e' }}>{article.created_by}</Link><span> in </span><Link to={`/topics/${article.belongs_to}/articles`} style={{ color: '#c1002e' }}>{article.belongs_to}</Link></p>
+          <div className="row pt-4">
+            <div className="col-sm-1">
+              <ArticleVotes 
+                id={article._id} 
+                votes={article.votes}
+                onUpVote={this.handleUpVoteEvent}
+                onDownVote={this.handleDownVoteEvent}
+              />
+            </div>
+            <div className="col-sm-11">
+              <h2 className="article-h2"><span className="opening-tag">{"<"}</span>{article.title} <span className="closing-tag">/></span></h2>
+              <p>By <Link to={`/users/${article.created_by}`} style={{ color: '#c1002e' }}>{article.created_by}</Link><span> in </span><Link to={`/topics/${article.belongs_to}/articles`} style={{ color: '#c1002e' }}>{article.belongs_to}</Link></p>
+            </div>
+            <div className="col-sm-12">
+              <p>{article.body}</p>
+              <p style={ shown } onClick={this.toggle.bind(this)}><Link to={`/articles/${article._id}/comments`} style={{ color: '#c1002e' }}>Show comments</Link></p>
+              <p style={ hidden } onClick={this.toggle.bind(this)}><Link to={`/articles/${article._id}`} style={{ color: '#c1002e' }}>Hide comments</Link></p>
+            </div>
           </div>
-          <p className="article-text">{article.body}</p>
-          <p style={ shown } onClick={this.toggle.bind(this)}><Link to={`/articles/${article._id}/comments`}>Show comments</Link></p>
-          <p style={ hidden } onClick={this.toggle.bind(this)}><Link to={`/articles/${article._id}`}>Hide comments</Link></p>
-          </article>
         }
+        </div>
         <Route path="/articles/:articleId/comments" component={Comments} />
       </div>
     );

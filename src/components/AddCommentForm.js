@@ -50,7 +50,7 @@ class AddCommentForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-row">
-          <div className="col-sm-10">
+          <div className="col-sm-10 py-1">
             <input 
             className="form-control" 
             type="text" 
@@ -59,7 +59,7 @@ class AddCommentForm extends Component {
             onChange={this.handleCommentChange}
             />
           </div>
-          <div className="col-sm-2">
+          <div className="col-sm-2 py-1">
             <button className="btn btn-danger" type="submit"><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></button>
           </div>
         </div>

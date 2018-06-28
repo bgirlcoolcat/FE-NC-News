@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Loading from './Loading';
 import ArticleListing from './ArticleListing';
 import ArticleVotes from './ArticleVotes';
-import './ArticlesPage.css';
 
 class ArticlesPage extends Component {
   state = {
@@ -77,14 +76,16 @@ class ArticlesPage extends Component {
           }).sort((a, b) => b.votes - a.votes)
           .map((article, i) => {
             return (
-              <ul className="article-page-ul" key={article._id}>
-                <li>
+              <div className="row" key={article._id}>
+                <div className="col-sm-1">
                   <ArticleVotes 
                     id={article._id}
                     votes={article.votes}
                     onUpVote={this.handleUpVoteEvent}
                     onDownVote={this.handleDownVoteEvent}
                   />
+                </div>
+                <div className="col-sm-11 pb-3">
                   <ArticleListing 
                     id={article._id}
                     belongs_to={article.belongs_to}
@@ -92,8 +93,8 @@ class ArticlesPage extends Component {
                     title={article.title}
                     comments={article.comments}
                   />
-                </li>
-              </ul>
+                </div>
+              </div>
             );
           })
         }

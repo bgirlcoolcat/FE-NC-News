@@ -102,11 +102,10 @@ class Comments extends Component {
   render () {
     const { comments, loading, articleId } = this.state;
     return (
-      <div>
-        <div className="comments">
-        <h4 className="comments-header"><span className="opening-tag">{"<"}</span>Comments <span className="closing-tag">/></span></h4>
+      <div className="comments">
+        <div className="container">
+        <h4 className="comments-header pt-3"><span className="opening-tag">{"<"}</span>Comments <span className="closing-tag">/></span></h4>
           <AddCommentsForm addComment={this.addComment} articleId={articleId} />
-        </div>
 
           { loading ? <Loading /> :
             comments.map((comment, commentId) => {
@@ -127,6 +126,7 @@ class Comments extends Component {
               )
             })
           }
+        </div>
       </div>
     );
   }

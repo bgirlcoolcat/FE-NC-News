@@ -1,18 +1,9 @@
 .comments {
-  padding-left: 56px;
-  padding-top: 20px;
   background-color: #f2f2f2;
 }
 
 .comments-header {
   font-weight: 700;
-}
-
-.comment-article {
-  margin-top: -80px;
-  padding-left: 50px;
-  padding-bottom: 20px;
-  border-bottom: dotted #595959 1px;
 }
 
 .commentator {
@@ -24,40 +15,7 @@
 }
 
 .comment-vote-count {
-  display: inline-block;
-}
-
-
-.comment-vote-count p {
-  margin: 0;
-  color: #0B0C0C;
   text-align: center;
-}
-
-.btn-vote {
-  background-color: white;
-  border: none;
-}
-
-.btn-vote:focus {
-  outline: 0;
-}
-
-.btn-vote:hover {
-  color: #c1002e;
-}
-
-.btn-voted {
-  background-color: white;
-  border: none;
-}
-
-.btn-voted:focus {
-  outline: 0;
-}
-
-.btn-voted:hover {
-  color: gray;
 }
 
 .btn-vote-comment {
