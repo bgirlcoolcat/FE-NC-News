@@ -24,8 +24,8 @@ class NavBar extends Component {
     const { topics } = this.state;
     return (
       // eslint-disable-next-line
-      <nav role="navigation" className="navbar navbar-expand-lg">
-        <ul className="nav-ul ml-4">
+      <nav role="navigation" className="navbar">
+        <ul className="nav-ul pl-2 ml-md-5">
           <NavLink exact to="/" className="nav-a"><button className="nav-btn"><li className="nav-li">Home</li></button></NavLink>
           { 
             topics.map(topic => {

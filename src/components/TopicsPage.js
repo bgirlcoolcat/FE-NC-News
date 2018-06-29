@@ -87,10 +87,10 @@ class TopicsPage extends Component {
     const { topic } = this.props.match.params;
     // console.log(topic);
     return (
-      <div className="container">
+      <div className="container pl-md-1">
         <div className="row">
           <div className="col-sm-12">
-            <h5 style={{ padding: '20px 0' }}><span className="opening-tag">{"<"}</span>{articles.length} {topic} articles <span className="closing-tag">/></span></h5>
+            <h5 style={{ padding: '1.2rem 0' }}><span className="opening-tag">{"<"}</span>{articles.length} {topic} articles <span className="closing-tag">/></span></h5>
           </div>
         </div>
         

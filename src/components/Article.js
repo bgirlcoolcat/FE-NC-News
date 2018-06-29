@@ -76,7 +76,7 @@ class Article extends Component {
     const {loading, article} = this.state;
     return (
       <div>
-        <div className="container">
+        <div className="container pl-md-1">
         { loading ? <Loading /> : 
           <div className="row pt-4">
             <div className="col-sm-1">

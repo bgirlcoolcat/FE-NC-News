@@ -103,7 +103,7 @@ class Comments extends Component {
     const { comments, loading, articleId } = this.state;
     return (
       <div className="comments">
-        <div className="container">
+        <div className="container pl-md-1">
         <h4 className="comments-header pt-3"><span className="opening-tag">{"<"}</span>Comments <span className="closing-tag">/></span></h4>
           <AddCommentsForm addComment={this.addComment} articleId={articleId} />
 
