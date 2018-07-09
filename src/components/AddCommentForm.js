@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { postComment } from '../containers/api';
 
 class AddCommentForm extends Component {
   state = {
@@ -16,26 +16,14 @@ class AddCommentForm extends Component {
     event.preventDefault();
     if (this.state.comment === "") return;
 
-    // console.log('CommentForm value: ' + this.state.comment);
     this.props.addComment(this.state.comment);
 
-    fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${this.props.articleId}/comments`, {
-      method: "POST",
-      body: JSON.stringify({
-        "comment": this.state.comment
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error ('Something went wrong with your fetch');
-      }
-    }).then((json) => {
-      console.log(json);
+    const articleId = this.props.articleId;
+    const comment = this.state.comment;
+
+    postComment(articleId, comment)
+    .then((json) => {
+      console.log("Success:", json);
     })
 
     // This clears the input

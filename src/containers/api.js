@@ -51,3 +51,19 @@ export const fetchArticles = () => {
     return res.json();
   })
 };
+
+export const postComment = (articleId, comment) => {
+  return fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}/comments`, {
+    method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ "comment": comment })
+  })
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error ("Something went wrong with your fetch");
+    }
+  })
+};
