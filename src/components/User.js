@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
+import { fetchUser } from '../containers/api';
 
 class User extends Component {
   state = {
@@ -8,17 +9,17 @@ class User extends Component {
   };
   componentDidMount() {
     const {username} = this.props.match.params;
-    fetch(`https://northcoders-news-api.herokuapp.com/api/users/${username}`)
-      .then(res => {
-        return res.json()
-      })
+    fetchUser(username)
       .then(body => {
-        console.log(body);
         this.setState({
           users: body.users, 
           loading: false
         })
       })
+      .catch(err => {
+        console.log(err);
+        this.props.history.push('/404');
+      });
   }
   render () {
     const {loading, users} = this.state;

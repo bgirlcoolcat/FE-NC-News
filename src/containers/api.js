@@ -67,3 +67,13 @@ export const postComment = (articleId, comment) => {
     }
   })
 };
+
+export const fetchUser = username => {
+  return fetch(`https://northcoders-news-api.herokuapp.com/api/users/${username}`)
+  .then(res => {
+    if(res.ok) {
+      return res.json();
+    }
+    throw new Error(`User ${username} not found`);
+  })
+}
