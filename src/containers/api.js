@@ -76,4 +76,18 @@ export const fetchUser = username => {
     }
     throw new Error(`User ${username} not found`);
   })
-}
+};
+
+export const putArticleVoteUp = articleId => {
+  return fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=up`, { 
+    method: 'PUT'
+  })
+  .catch(error => console.error('Error:', error));
+};
+
+export const putArticleVoteDown = articleId => {
+  return fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=down`, { 
+    method: 'PUT'
+  })
+  .catch(error => console.error('Error:', error));
+};

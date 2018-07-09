@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
-import { fetchArticles } from '../containers/api';
+import { fetchArticles, putArticleVoteUp, putArticleVoteDown } from '../containers/api';
 import ArticleListing from './ArticleListing';
 import ArticleVotes from './ArticleVotes';
 
@@ -35,10 +35,7 @@ class ArticlesPage extends Component {
       articles: updatedArticleVotes
     });
 
-    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=up`, { 
-      method: 'PUT'
-    })
-    .catch(error => console.error('Error:', error));
+    putArticleVoteUp(articleId)
   };
 
   handleDownVoteEvent = articleId => {
@@ -56,10 +53,7 @@ class ArticlesPage extends Component {
       articles: updatedArticleVotes
     });
 
-    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=down`, { 
-      method: 'PUT'
-    })
-    .catch(error => console.error('Error:', error));
+    putArticleVoteDown(articleId)
   };
 
   render () {
