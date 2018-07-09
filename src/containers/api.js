@@ -1,16 +1,11 @@
 export const fetchTopic = topic => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/topics/${topic}/articles`)
-  .then(
-    res => {
-      // console.log(res);
+  .then(res => {
       if(res.status === 404) {
-        // throw new Error('Sorry. User not found')
-        // return Promise.reject(new Error('Sorry. User not found'));
         return Promise.reject(new Error(`${topic} articles not found`));
       }
       return res.json();
-    }
-  )
+    })
 };
 
 export const fetchOneArticle = articleId => {
@@ -23,7 +18,6 @@ export const fetchOneArticle = articleId => {
 export const fetchComments = articleId => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}/comments`)
     .then(res => {
-      console.log(res);
       return res.json();
     });
 };
@@ -35,13 +29,24 @@ export const deleteComment = commentId => {
   })
   .then(res => res)
   .catch(err => err);
-}
+};
 
 export const fetchTopics = () => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/topics`)
   .then(res => {
     if(res.status === 404) {
       return Promise.reject(new Error("Topics not found"));
+    }
+    return res.json();
+  })
+};
+
+export const fetchArticles = () => {
+  return fetch(`https://northcoders-news-api.herokuapp.com/api/articles`)
+  .then(res => {
+    console.log(res);
+    if(res.status === 404) {
+      return Promise.reject(new Error("Articles not found"));
     }
     return res.json();
   })

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
+import { fetchArticles } from '../containers/api';
 import ArticleListing from './ArticleListing';
 import ArticleVotes from './ArticleVotes';
+
 
 class ArticlesPage extends Component {
   state = {
@@ -9,13 +11,8 @@ class ArticlesPage extends Component {
     loading: true
   };
   componentDidMount () {
-    // Returns all the articles
-    fetch(`https://northcoders-news-api.herokuapp.com/api/articles`)
-      .then(res => {
-        return res.json();
-    })
+    fetchArticles()
     .then(body => {
-      // console.log(body);
       this.setState({ 
         articles: body.articles, 
         loading: false 
