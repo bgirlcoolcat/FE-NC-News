@@ -1,25 +1,32 @@
 export const fetchTopic = topic => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/topics/${topic}/articles`)
-  .then(res => {
-      if(res.status === 404) {
-        return Promise.reject(new Error(`${topic} articles not found`));
+    .then(res => {
+      console.log(res);
+      if (res.ok) {
+        return res.json();
       }
-      return res.json();
+      throw new Error(`${topic} articles not found`);
     })
 };
 
 export const fetchOneArticle = articleId => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}`)
     .then(res => {
-      return res.json();
-    });
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(`Article with id: ${articleId} not found`);
+    })
 };
 
 export const fetchComments = articleId => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}/comments`)
     .then(res => {
-      return res.json();
-    });
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(`Comments not found for article id: ${articleId}`);
+    })
 };
 
 export const deleteComment = commentId => {
@@ -27,29 +34,27 @@ export const deleteComment = commentId => {
     method: 'DELETE',
     mode: 'cors',
   })
-  .then(res => res)
-  .catch(err => err);
+  .catch(error => console.error('Error:', error))
 };
 
 export const fetchTopics = () => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/topics`)
-  .then(res => {
-    if(res.status === 404) {
-      return Promise.reject(new Error("Topics not found"));
-    }
-    return res.json();
-  })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error("Topics not found");
+    })
 };
 
 export const fetchArticles = () => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/articles`)
-  .then(res => {
-    console.log(res);
-    if(res.status === 404) {
-      return Promise.reject(new Error("Articles not found"));
-    }
-    return res.json();
-  })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error("Articles not found");
+    })
 };
 
 export const postComment = (articleId, comment) => {
@@ -59,23 +64,22 @@ export const postComment = (articleId, comment) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ "comment": comment })
   })
-  .then((res) => {
+  .then(res => {
     if (res.ok) {
       return res.json();
-    } else {
-      throw new Error ("Something went wrong with your fetch");
     }
+    throw new Error ("Something went wrong with posting your comment");
   })
 };
 
 export const fetchUser = username => {
   return fetch(`https://northcoders-news-api.herokuapp.com/api/users/${username}`)
-  .then(res => {
-    if(res.ok) {
-      return res.json();
-    }
-    throw new Error(`User ${username} not found`);
-  })
+    .then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+      throw new Error(`User ${username} not found`);
+    })
 };
 
 export const putArticleVoteUp = articleId => {
