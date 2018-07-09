@@ -91,3 +91,17 @@ export const putArticleVoteDown = articleId => {
   })
   .catch(error => console.error('Error:', error));
 };
+
+export const putCommentVoteUp = commentId => {
+  return fetch(`http://northcoders-news-api.herokuapp.com/api/comments/${commentId}?vote=up`, { 
+    method: 'PUT'
+  })
+  .catch(error => console.error('Error:', error));
+};
+
+export const putCommentVoteDown = commentId => {
+  return fetch(`http://northcoders-news-api.herokuapp.com/api/comments/${commentId}?vote=down`, { 
+    method: 'PUT' 
+  })
+  .catch(error => console.error('Error:', error));
+};

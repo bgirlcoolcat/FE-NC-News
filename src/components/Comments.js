@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
 import Comment from './Comment';
-import { fetchComments, deleteComment } from '../containers/api';
+import { fetchComments, deleteComment, putCommentVoteUp, putCommentVoteDown } from '../containers/api';
 import AddCommentsForm from './AddCommentForm';
 import './Comments.css';
 
@@ -72,10 +72,7 @@ class Comments extends Component {
       comments: updatedVotes
     });
 
-    fetch(`http://northcoders-news-api.herokuapp.com/api/comments/${commentId}?vote=up`, { 
-      method: 'PUT'
-    })
-    .catch(error => console.error('Error:', error));
+    putCommentVoteUp(commentId)
   };
 
   handleDownVoteEvent = commentId => {
@@ -93,10 +90,7 @@ class Comments extends Component {
       comments: updatedVotes
     });
 
-    fetch(`http://northcoders-news-api.herokuapp.com/api/comments/${commentId}?vote=down`, { 
-      method: 'PUT' 
-    })
-    .catch(error => console.error('Error:', error));
+    putCommentVoteDown(commentId)
   };
 
   render () {
