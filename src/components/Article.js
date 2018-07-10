@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loading from './Loading';
-import { fetchOneArticle } from '../containers/api';
+import { fetchOneArticle, putArticleVoteUp, putArticleVoteDown } from '../containers/api';
 import { Link, Route } from 'react-router-dom';
 import Comments from './Comments';
 import ArticleVotes from './ArticleVotes';
@@ -20,19 +20,15 @@ class Article extends Component {
   }
 
   componentDidMount() {
-    // console.log("componentDidMount");
     const { articleId } = this.props.match.params;
     fetchOneArticle(articleId)
       .then(article => {
-        // console.log(body);
         this.setState({
           article, loading: false
         })
       })
   }
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps);
-    console.log("componentWillReceiveProps");
     const { articleId } = nextProps.match.params
     fetchOneArticle(articleId)
       .then(article => {
@@ -48,10 +44,7 @@ class Article extends Component {
     this.setState({
       article: Object.assign({}, this.state.article, { votes: this.state.article.votes + 1 })
     });
-    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=up`, { 
-      method: 'PUT' 
-    })
-    .catch(error => console.error('Error:', error));
+    putArticleVoteUp(articleId)
   };
 
   handleDownVoteEvent = () => {
@@ -59,10 +52,7 @@ class Article extends Component {
     this.setState({
       article: Object.assign({}, this.state.article, { votes: this.state.article.votes - 1 })
     });
-    fetch(`http://northcoders-news-api.herokuapp.com/api/articles/${articleId}?vote=down`, { 
-      method: 'PUT' 
-    })
-    .catch(error => console.error('Error:', error));
+    putArticleVoteDown(articleId)
   };
 
   render () {
