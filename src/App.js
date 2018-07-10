@@ -7,9 +7,9 @@ import ArticlesPage from './components/ArticlesPage';
 import Article from './components/Article';
 import TopicsPage from './components/TopicsPage';
 import NoMatch from './components/NoMatch';
-import './App.css';
 import nclogo from './components/images/nc-logo-transparent.png';
 import User from './components/User'; 
+import './App.css';
 
 class App extends Component {
   render() {

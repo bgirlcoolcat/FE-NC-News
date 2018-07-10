@@ -11,27 +11,24 @@ class TopicsPage extends Component {
     loading: true
   };
   componentDidMount () {
-    console.log('componentDidMount');
-    // Return all the articles for a certain topic
     const {topic} = this.props.match.params;
     fetchTopic(topic)
-      .then(body => {
-        console.log('Topic', body);
-        this.setState({ 
-          articles: body.articles, 
-          loading: false
-        })
+    .then(body => {
+      this.setState({ 
+        articles: body.articles, 
+        loading: false
       })
-      .catch(err => {
-        console.log(err);
-        this.props.history.push('/404')
-      });
+    })
+    .catch(err => {
+      console.log(err);
+      this.props.history.push('/404')
+    });
   }
   componentWillReceiveProps (nextProps) {
-    console.log('componentWillReceiveProps');
     this.setState({ loading: true }, () => {
       const {topic} = this.props.match.params
-      fetchTopic(topic).then(body => {
+      fetchTopic(topic)
+      .then(body => {
         this.setState({
           articles: body.articles, 
           loading: false
@@ -85,7 +82,6 @@ class TopicsPage extends Component {
   render () {
     const { articles, loading } = this.state;
     const { topic } = this.props.match.params;
-    // console.log(topic);
     return (
       <div className="container pl-md-1">
         <div className="row">
@@ -96,7 +92,7 @@ class TopicsPage extends Component {
         
         { loading ? <Loading /> : 
           articles
-            .map((article) => {
+            .map(article => {
               return (
                 <div className="row" key={article._id}>
                   <div className="col-sm-1">

@@ -9,10 +9,8 @@ class NavBar extends Component {
   };
 
   componentDidMount () {
-    // Returns all the topics
     fetchTopics()
     .then(body => {
-      console.log('Topics:', body);
       this.setState({ 
         topics: body.topics, 
         loading: false 

@@ -12,11 +12,11 @@ class ArticlesPage extends Component {
   };
   componentDidMount () {
     fetchArticles()
-    .then(body => {
-      this.setState({ 
-        articles: body.articles, 
-        loading: false 
-      })
+      .then(body => {
+        this.setState({ 
+          articles: body.articles, 
+          loading: false 
+        })
     });
   }
 
@@ -65,7 +65,7 @@ class ArticlesPage extends Component {
           .filter((article) => {
             return article.votes >= 2120
           }).sort((a, b) => b.votes - a.votes)
-          .map((article, i) => {
+          .map((article) => {
             return (
               <div className="row" key={article._id}>
                 <div className="col-sm-1">

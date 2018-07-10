@@ -22,7 +22,7 @@ class AddCommentForm extends Component {
     const comment = this.state.comment;
 
     postComment(articleId, comment)
-    .then((json) => {
+    .then(json => {
       console.log("Success:", json);
     })
 
@@ -40,11 +40,11 @@ class AddCommentForm extends Component {
         <div className="form-row">
           <div className="col-sm-10 py-1">
             <input 
-            className="form-control" 
-            type="text" 
-            placeholder="Add a comment..."
-            value={comment}
-            onChange={this.handleCommentChange}
+              className="form-control" 
+              type="text" 
+              placeholder="Add a comment..."
+              value={comment}
+              onChange={this.handleCommentChange}
             />
           </div>
           <div className="col-sm-2 py-1">

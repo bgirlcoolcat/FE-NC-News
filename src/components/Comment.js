@@ -7,7 +7,6 @@ class Comment extends Component {
   state = {};
 
   handleDeleteCommentClick = () => {
-    // Remember it is what we have called the prop in the parent, e.g. id, not _id
     this.props.onDeleteComment(this.props.id);
   }
 
@@ -15,7 +14,6 @@ class Comment extends Component {
     this.setState({
       upVoted: !this.props.upVoted
     })
-    // id is what I called it in Comments.js
     this.props.onUpVote(this.props.id);
   }
 
