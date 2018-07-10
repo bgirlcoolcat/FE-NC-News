@@ -26,7 +26,7 @@ class TopicsPage extends Component {
   }
   componentWillReceiveProps (nextProps) {
     this.setState({ loading: true }, () => {
-      const {topic} = this.props.match.params
+      const {topic} = nextProps.match.params;
       fetchTopic(topic)
       .then(body => {
         this.setState({
