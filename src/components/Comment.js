@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import PT from 'prop-types';
 import './Comments.css';
+
 
 class Comment extends Component {
   state = {};
@@ -64,5 +66,16 @@ class Comment extends Component {
     );
   }
 }
+
+Comment.propTypes = {
+  onDeleteComment: PT.func.isRequired,
+  id: PT.string.isRequired,
+  onUpVote: PT.func.isRequired,
+  onDownVote: PT.func.isRequired,
+  created_at: PT.number.isRequired,
+  votes: PT.number.isRequired,
+  created_by: PT.string.isRequired,
+  body: PT.string.isRequired,
+};
 
 export default Comment;

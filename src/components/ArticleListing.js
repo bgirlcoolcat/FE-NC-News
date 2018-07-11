@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PT from 'prop-types';
 import './ArticleListing.css';
 
 
@@ -16,5 +17,13 @@ const ArticleListing = (props) => {
     </div>
   );
 }
+
+ArticleListing.propTypes = {
+  id: PT.string.isRequired,
+  created_by: PT.string.isRequired, 
+  belongs_to: PT.string.isRequired, 
+  title: PT.string.isRequired, 
+  comments: PT.number.isRequired, 
+};
 
 export default ArticleListing;

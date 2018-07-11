@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PT from 'prop-types';
 import './ArticleVotes.css';
+
 
 class ArticleVotes extends Component {
   state = {
@@ -45,5 +47,12 @@ class ArticleVotes extends Component {
     );
   }
 }
+
+ArticleVotes.propTypes = {
+  onUpVote: PT.func.isRequired,
+  id: PT.string.isRequired,
+  onDownVote: PT.func.isRequired,
+  votes: PT.number.isRequired,
+};
 
 export default ArticleVotes;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { postComment } from '../containers/api';
+import PT from 'prop-types';
+
 
 class AddCommentForm extends Component {
   state = {
@@ -55,5 +57,10 @@ class AddCommentForm extends Component {
     );
   }
 }
+
+AddCommentForm.propTypes = {
+  addComment: PT.func.isRequired,
+  articleId: PT.string.isRequired,
+};
 
 export default AddCommentForm;
