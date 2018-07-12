@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
+import Button from './Button';
 import './ArticleVotes.css';
 
 
@@ -27,21 +28,21 @@ class ArticleVotes extends Component {
     return (
       <div className="vote-count">
         { this.state.upVoted ? 
-          <button className="btn-voted" onClick={this.handleUpVoteClick} disabled> 
-            <span className="far fa-thumbs-up" data-toggle="tooltip" title="You have already voted"></span>
-          </button> :
-          <button className="btn-vote" onClick={this.handleUpVoteClick}>
+          <Button btnClass="voted" onClick={this.handleUpVoteClick} isDisabled={true}> 
+            <span className="far fa-thumbs-up" data-toggle="tooltip" title="You have already voted up"></span>
+          </Button> :
+          <Button btnClass="vote" onClick={this.handleUpVoteClick}>
             <span className="far fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
-          </button> 
+          </Button> 
         }
         <p><span className="badge badge-pill badge-danger">{this.props.votes}</span></p>
         { this.state.downVoted ? 
-          <button className="btn-voted" onClick={this.handleDownVoteClick} disabled>
-            <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted"></span>
-          </button> :
-          <button className="btn-vote" onClick={this.handleDownVoteClick}>
+          <Button btnClass="voted" onClick={this.handleDownVoteClick} isDisabled={true}>
+            <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted down"></span>
+          </Button> :
+          <Button btnClass="vote" onClick={this.handleDownVoteClick}>
             <span className="far fa-thumbs-down" data-toggle="tooltip" title="Vote down"></span>
-          </button>
+          </Button>
         }
       </div>
     );

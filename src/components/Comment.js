@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import PT from 'prop-types';
+import Button from './Button';
 import './Comments.css';
 
 
@@ -32,21 +33,21 @@ class Comment extends Component {
       <div className="row py-3" style={{ borderBottom: 'dotted #595959 1px' }}>
         <div className="col-sm-1 comment-vote-count">
           { this.state.upVoted ? 
-            <button className="btn-voted-comment" onClick={this.handleUpVoteClick} disabled> 
-              <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="You have already voted"></span>
-            </button> :
-            <button className="btn-vote-comment" onClick={this.handleUpVoteClick}>
+            <Button btnClass="comment-voted" onClick={this.handleUpVoteClick} isDisabled={true}> 
+              <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="You have already voted up"></span>
+            </Button> :
+            <Button btnClass="comment-vote" onClick={this.handleUpVoteClick}>
               <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
-            </button> 
+            </Button> 
           }
             <p className="m-0"><span className="badge badge-pill badge-danger">{this.props.votes || 0}</span></p>
           { this.state.downVoted ? 
-            <button className="btn-voted-comment" onClick={this.handleDownVoteClick} disabled>
-              <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted"></span>
-            </button> :
-            <button className="btn-vote-comment" onClick={this.handleDownVoteClick}>
+            <Button btnClass="comment-voted" onClick={this.handleDownVoteClick} isDisabled={true}>
+              <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted down"></span>
+            </Button> :
+            <Button btnClass="comment-vote" onClick={this.handleDownVoteClick}>
               <span className="far fa-thumbs-down" data-toggle="tooltip" title="Vote down"></span>
-            </button>
+            </Button>
           }
         </div>
           
@@ -55,12 +56,12 @@ class Comment extends Component {
           <p className="comment-text">{this.props.body || this.props.comment}</p>
           
           {this.props.created_by === "northcoder" ? 
-          <button className="btn btn-outline-secondary btn-sm" onClick={this.handleDeleteCommentClick}>
+          <Button btnClass="delete-comment" onClick={this.handleDeleteCommentClick}>
           <span className="opening-tag-delete-btn">{"<"}</span>Delete comment <span className="closing-tag-delete-btn">/></span>
-          </button> : 
-          <button className="btn btn-outline-secondary btn-sm" onClick={()=>{ alert('You are not authorised to delete a comment posted by another user') }}>
+          </Button> : 
+          <Button btnClass="delete-comment" onClick={()=>{ alert('You are not authorised to delete a comment posted by another user') }}>
           <span className="opening-tag-delete-btn">{"<"}</span>Delete comment <span className="closing-tag-delete-btn">/></span>
-          </button>}
+          </Button>}
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { postComment } from '../containers/api';
 import PT from 'prop-types';
+import Button from './Button';
 
 
 class AddCommentForm extends Component {
@@ -50,7 +51,7 @@ class AddCommentForm extends Component {
             />
           </div>
           <div className="col-sm-2 py-1">
-            <button className="btn btn-danger" type="submit"><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></button>
+            <Button btnClass="submit" type="submit"><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button>
           </div>
         </div>
       </form>
