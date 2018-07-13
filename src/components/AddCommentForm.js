@@ -37,7 +37,6 @@ class AddCommentForm extends Component {
 
   render () {
     const { comment } = this.state;
-
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-row">
@@ -51,7 +50,12 @@ class AddCommentForm extends Component {
             />
           </div>
           <div className="col-sm-2 py-1">
-            <Button btnClass="submit" type="submit"><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button>
+            {/* <Button btnClass="submit" type="submit"><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button> */}
+          
+            { this.state.comment === "" ? 
+              <Button btnClass="submit" type="submit" isDisabled={true}><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button> :
+              <Button btnClass="submit" type="submit" isDisabled={false}><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button>
+            }
           </div>
         </div>
       </form>
