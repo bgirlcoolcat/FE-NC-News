@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Loading from './Loading';
 import Comment from './Comment';
 import { fetchComments, deleteComment, putCommentVoteUp, putCommentVoteDown } from '../containers/api';
-import AddCommentsForm from './AddCommentForm';
+import AddCommentForm from './AddCommentForm';
 import './Comments.css';
 
 
@@ -84,7 +84,7 @@ class Comments extends Component {
       <div className="comments">
         <div className="container pl-md-1">
         <h4 className="comments-header pt-3"><span className="opening-tag">{"<"}</span>Comments <span className="closing-tag">/></span></h4>
-          <AddCommentsForm addComment={this.addComment} articleId={articleId} />
+          <AddCommentForm addComment={this.addComment} articleId={articleId} />
 
           { loading ? <Loading /> :
             comments.map((comment, commentId) => {
