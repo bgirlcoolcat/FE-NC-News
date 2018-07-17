@@ -27,23 +27,13 @@ class ArticleVotes extends Component {
   render () {
     return (
       <div className="vote-count">
-        { this.state.upVoted ? 
-          <Button btnClass="voted" onClick={this.handleUpVoteClick} isDisabled={true}> 
-            <span className="far fa-thumbs-up" data-toggle="tooltip" title="You have already voted up"></span>
-          </Button> :
-          <Button btnClass="vote" onClick={this.handleUpVoteClick}>
-            <span className="far fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
-          </Button> 
-        }
+        <Button btnClass={this.state.upVoted ? "voted" : "vote"} onClick={this.handleUpVoteClick} isDisabled={this.state.upVoted}> 
+          <span className="far fa-thumbs-up" data-toggle="tooltip" title={this.state.upVoted ? "You have already voted up" : "Vote up"}></span>
+        </Button>
         <p><span className="badge badge-pill badge-danger">{this.props.votes}</span></p>
-        { this.state.downVoted ? 
-          <Button btnClass="voted" onClick={this.handleDownVoteClick} isDisabled={true}>
-            <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted down"></span>
-          </Button> :
-          <Button btnClass="vote" onClick={this.handleDownVoteClick}>
-            <span className="far fa-thumbs-down" data-toggle="tooltip" title="Vote down"></span>
-          </Button>
-        }
+        <Button btnClass={this.state.downVoted ? "voted" : "vote"} onClick={this.handleDownVoteClick} isDisabled={this.state.downVoted}>
+          <span className="far fa-thumbs-down" data-toggle="tooltip" title={this.state.downVoted ? "You have already voted down" : "Vote down"}></span>
+        </Button>
       </div>
     );
   }
