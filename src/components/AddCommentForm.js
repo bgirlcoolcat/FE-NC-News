@@ -19,14 +19,13 @@ class AddCommentForm extends Component {
     event.preventDefault();
     if (this.state.comment === "") return;
 
-    this.props.addComment(this.state.comment);
-
     const articleId = this.props.articleId;
     const comment = this.state.comment;
 
     postComment(articleId, comment)
     .then(json => {
-      console.log("Success:", json);
+      console.log("Success:", json.comment);
+      this.props.addComment(json.comment);
     })
 
     // This clears the input
@@ -50,8 +49,6 @@ class AddCommentForm extends Component {
             />
           </div>
           <div className="col-sm-2 py-1">
-            {/* <Button btnClass="submit" type="submit"><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button> */}
-          
             { this.state.comment === "" ? 
               <Button btnClass="submit" type="submit" isDisabled={true}><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button> :
               <Button btnClass="submit" type="submit" isDisabled={false}><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button>

@@ -27,18 +27,12 @@ class Comments extends Component {
   }
 
   addComment = comment => {
-
-    const newComment = {
-      comment
-    };
-
-    const newComments = this.state.comments.concat([newComment]);
+    const newComments = this.state.comments.concat([comment]);
 
     this.setState({ comments: newComments });
   };
 
   handleDeleteCommentEvent = commentId => {
-
     const updatedComments = this.state.comments.filter(item => {
       return item._id !== commentId;
     })
