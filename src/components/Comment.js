@@ -32,23 +32,13 @@ class Comment extends Component {
     return (
       <div className="row py-3" style={{ borderBottom: 'dotted #595959 1px' }}>
         <div className="col-sm-1 comment-vote-count">
-          { this.state.upVoted ? 
-            <Button btnClass="comment-voted" onClick={this.handleUpVoteClick} isDisabled={true}> 
-              <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="You have already voted up"></span>
-            </Button> :
-            <Button btnClass="comment-vote" onClick={this.handleUpVoteClick}>
-              <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title="Vote up"></span>
-            </Button> 
-          }
-            <p className="m-0"><span className="badge badge-pill badge-danger">{this.props.votes || 0}</span></p>
-          { this.state.downVoted ? 
-            <Button btnClass="comment-voted" onClick={this.handleDownVoteClick} isDisabled={true}>
-              <span className="far fa-thumbs-down" data-toggle="tooltip" title="You have already voted down"></span>
-            </Button> :
-            <Button btnClass="comment-vote" onClick={this.handleDownVoteClick}>
-              <span className="far fa-thumbs-down" data-toggle="tooltip" title="Vote down"></span>
-            </Button>
-          }
+          <Button btnClass={this.state.upVoted ? "comment-voted" : "comment-vote"} onClick={this.handleUpVoteClick} isDisabled={this.state.upVoted}> 
+            <span className="far fa-thumbs-up" span-toggle="fas fa-thumbs-up" data-toggle="tooltip" title={this.state.upVoted ? "You have already voted up" : "Vote up"}></span>
+          </Button>
+          <p className="m-0"><span className="badge badge-pill badge-danger">{this.props.votes || 0}</span></p>
+          <Button btnClass={this.state.downVoted ? "comment-voted" : "comment-vote"} onClick={this.handleDownVoteClick} isDisabled={this.state.downVoted}>
+            <span className="far fa-thumbs-down" data-toggle="tooltip" title={this.state.downVoted ? "You have already voted down" : "Vote down"}></span>
+          </Button>
         </div>
           
         <div className="col-sm-11">
