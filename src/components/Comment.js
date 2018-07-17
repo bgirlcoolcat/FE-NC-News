@@ -45,13 +45,9 @@ class Comment extends Component {
           <p className="commentator">Posted by <Link to={`/users/${this.props.created_by}`} style={{ color: '#c1002e' }}>{this.props.created_by || "northcoder"}</Link><span> - </span>{date.startOf('minute').fromNow()}</p>
           <p className="comment-text">{this.props.body || this.props.comment}</p>
           
-          {this.props.created_by === "northcoder" ? 
-          <Button btnClass="delete-comment" onClick={this.handleDeleteCommentClick}>
-          <span className="opening-tag-delete-btn">{"<"}</span>Delete comment <span className="closing-tag-delete-btn">/></span>
-          </Button> : 
-          <Button btnClass="delete-comment" onClick={()=>{ alert('You are not authorised to delete a comment posted by another user') }}>
-          <span className="opening-tag-delete-btn">{"<"}</span>Delete comment <span className="closing-tag-delete-btn">/></span>
-          </Button>}
+          <Button btnClass="delete-comment" onClick={ this.props.created_by === "northcoder" ? this.handleDeleteCommentClick : ()=>{ alert('You are not authorised to delete a comment posted by another user')} }>
+            <span className="opening-tag-delete-btn">{"<"}</span>Delete comment <span className="closing-tag-delete-btn">/></span>
+          </Button> 
         </div>
       </div>
     );
