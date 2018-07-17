@@ -49,10 +49,7 @@ class AddCommentForm extends Component {
             />
           </div>
           <div className="col-sm-2 py-1">
-            { this.state.comment === "" ? 
-              <Button btnClass="submit" type="submit" isDisabled={true}><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button> :
-              <Button btnClass="submit" type="submit" isDisabled={false}><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button>
-            }
+          <Button btnClass="submit" type="submit" isDisabled={this.state.comment === "" ? true : false}><span className="opening-tag-submit-btn">{"<"}</span>Add comment <span className="closing-tag-submit-btn">/></span></Button>
           </div>
         </div>
       </form>
