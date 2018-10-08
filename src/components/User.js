@@ -4,7 +4,7 @@ import { fetchUser } from '../containers/api';
 
 class User extends Component {
   state = {
-    users: [],
+    user: {},
     loading: true
   };
   componentDidMount() {
@@ -12,7 +12,7 @@ class User extends Component {
     fetchUser(username)
     .then(body => {
       this.setState({
-        users: body.users, 
+        user: body.user, 
         loading: false
       })
     })
@@ -22,12 +22,10 @@ class User extends Component {
     });
   }
   render () {
-    const {loading, users} = this.state;
+    const {loading, user} = this.state;
     return (
       <div className="container">
         { loading ? <Loading /> : 
-          users.map((user, i) => {
-            return(
               <div className="row" key={user._id}>
                 <div className="col-sm-1 pt-4">
                   <img 
@@ -42,8 +40,6 @@ class User extends Component {
                   <p><span style={{ color: 'gray' }}>Username:</span> {user.username}</p>
                 </div>
               </div>
-            );
-          })
         }
       </div>
     );

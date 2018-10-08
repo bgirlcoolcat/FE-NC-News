@@ -62,9 +62,8 @@ class ArticlesPage extends Component {
       <div>
         { loading ? <Loading /> : 
           articles
-          .filter((article) => {
-            return article.votes >= 2120
-          }).sort((a, b) => b.votes - a.votes)
+          .sort((a, b) => b.votes - a.votes)
+          .filter((i, index) => (index < 10))
           .map((article) => {
             return (
               <div className="row" key={article._id}>
@@ -82,7 +81,6 @@ class ArticlesPage extends Component {
                     belongs_to={article.belongs_to}
                     created_by={article.created_by}
                     title={article.title}
-                    comments={article.comments}
                   />
                 </div>
               </div>

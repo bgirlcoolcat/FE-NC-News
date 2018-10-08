@@ -8,7 +8,7 @@ import './Article.css';
 
 class Article extends Component {
   state = {
-    article: null,
+    article: {},
     loading: true,
     shown: false
   };
@@ -24,7 +24,8 @@ class Article extends Component {
     fetchOneArticle(articleId)
       .then(article => {
         this.setState({
-          article, loading: false
+          article: article.article, 
+          loading: false
         })
       })
   }
@@ -33,7 +34,7 @@ class Article extends Component {
     fetchOneArticle(articleId)
       .then(article => {
         this.setState({
-          article,
+          article: article.article,
           loading: false,
         });
     });
@@ -62,7 +63,8 @@ class Article extends Component {
 		
 		let hidden = {
 			display: this.state.shown ? "none" : "block"
-		}
+    }
+    
     const {loading, article} = this.state;
     return (
       <div>

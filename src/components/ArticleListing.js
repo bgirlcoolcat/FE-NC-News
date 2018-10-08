@@ -12,7 +12,7 @@ const ArticleListing = (props) => {
         <span> in </span>
         <Link to={`/topics/${props.belongs_to}/articles`} style={{ color: '#c1002e' }}>{props.belongs_to}</Link>
         <span className="far fa-comments"></span>
-        <Link to={`/articles/${props.id}/comments`} style={{ color: '#c1002e' }}>{props.comments} comments</Link>
+        <Link to={`/articles/${props.id}/comments`} style={{ color: '#c1002e' }}>Comments</Link>
       </p>
     </div>
   );
@@ -23,7 +23,6 @@ ArticleListing.propTypes = {
   created_by: PT.string.isRequired, 
   belongs_to: PT.string.isRequired, 
   title: PT.string.isRequired, 
-  comments: PT.number.isRequired, 
 };
 
 export default ArticleListing;
